@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://13gt6vqyu6py"]
+
+[ext_resource type="Script" uid="uid://navrnyckkjme" path="res://Scripts/Player.gd" id="1_d6yu0"]
+[ext_resource type="Texture2D" uid="uid://beefn63x7flp7" path="res://assets/Sprites/Entities/PlayerMove.png" id="1_yn15a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prsjk"]
+atlas = ExtResource("1_yn15a")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imxbi"]
+atlas = ExtResource("1_yn15a")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7bry"]
+atlas = ExtResource("1_yn15a")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ibme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prsjk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imxbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7bry")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 4.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_d6yu0")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, -4)
+sprite_frames = SubResource("SpriteFrames_7ibme")
+animation = &"jump"
+centered = false
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(4, -4, 4, 4, -3, 4, -3, -4)

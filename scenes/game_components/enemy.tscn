@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://4ujj1ma8h1a6"]
+
+[ext_resource type="Texture2D" uid="uid://cmqs3mgsbkjck" path="res://assets/Sprites/Entities/Monster1.png" id="1_1ahfk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qjo"]
+size = Vector2(20, 21)
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 2.5)
+texture = ExtResource("1_1ahfk")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, -4, -4, 9, 4, 9, 4, -4)
+
+[node name="CombatArea" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="CombatArea"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_v8qjo")
