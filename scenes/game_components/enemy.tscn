@@ -1,21 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://4ujj1ma8h1a6"]
+[gd_scene load_steps=6 format=3 uid="uid://4ujj1ma8h1a6"]
 
-[ext_resource type="Texture2D" uid="uid://cmqs3mgsbkjck" path="res://assets/Sprites/Entities/Monster1.png" id="1_1ahfk"]
+[ext_resource type="Texture2D" uid="uid://cmqs3mgsbkjck" path="res://assets/sprites/entities/enemies/Monster1.png" id="1_1ahfk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5e54"]
+atlas = ExtResource("1_1ahfk")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4v05"]
+atlas = ExtResource("1_1ahfk")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r5p8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5e54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4v05")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qjo"]
-size = Vector2(20, 21)
+size = Vector2(20, 13.25)
 
 [node name="Enemy" type="CharacterBody2D"]
 
-[node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, 2.5)
-texture = ExtResource("1_1ahfk")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r5p8f")
+autoplay = "default"
+frame_progress = 0.046757247
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-4, -4, -4, 9, 4, 9, 4, -4)
+polygon = PackedVector2Array(-4, -3, -4, 1, 4, 1, 4, -3)
 
 [node name="CombatArea" type="Area2D" parent="."]
 
 [node name="Shape" type="CollisionShape2D" parent="CombatArea"]
-position = Vector2(0, 2)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_v8qjo")
